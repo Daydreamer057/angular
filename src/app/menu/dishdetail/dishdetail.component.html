@@ -20,10 +20,9 @@
   <mat-card>
     <mat-card-content>
       <p *ngFor="let comment of selectedDish.comments">
-      Rating : {{comment.rating}}<br>
-      Comment : {{comment.comment}}<br>
-      Author : {{comment.author}}<br>
-      Date : {{comment.date | date}}
+        Comment : {{comment.comment}}<br>
+      {{comment.rating}} Stars<br>
+      -- {{comment.author}} {{comment.date | date}}
       </p>
     </mat-card-content>
   </mat-card>
