@@ -22,7 +22,9 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
-    this.leader = this.leaderservice.getLeader(id);
-    this.leaders = this.leaderservice.getLeaders();
+    this.leaderservice.getLeaders()
+      .then((leaders) => this.leaders = leaders);
+    this.leaderservice.getLeader(id)
+      .then((leader) => this.leader = leader);
   }
 }
