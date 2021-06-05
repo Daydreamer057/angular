@@ -42,6 +42,8 @@ export class DishdetailComponent implements OnInit {
   commentForm: FormGroup;
   comment: Comment;
 
+  rating : number = 5;
+
   constructor(private dishservice: DishService,
               private route: ActivatedRoute,
               private location: Location,
@@ -80,8 +82,10 @@ export class DishdetailComponent implements OnInit {
 
   onSubmit() {
     this.comment = this.commentForm.value;
+    this.comment.date = new Date().toISOString();
+    this.dish.comments.push(this.comment);
     console.log(this.comment);
-    this.commentForm.reset();
+    this.commentForm.reset({rating: this.rating});
   }
 
   onValueChanged(data?: any) {
