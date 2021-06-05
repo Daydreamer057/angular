@@ -7,6 +7,8 @@ import { MatListModule } from "@angular/material/list";
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import {MatSliderModule} from '@angular/material/slider';
+
 import { DishService } from './services/dish.service';
 
 import { AppComponent } from './app.component';
@@ -32,6 +34,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatSlider} from "@angular/material/slider";
 
 @NgModule({
   declarations: [
@@ -63,7 +66,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatInputModule,
     MatCheckboxModule,
     FormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSliderModule
   ],
   providers: [DishService,
   PromotionService,
