@@ -35,6 +35,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatSlider} from "@angular/material/slider";
+import { HttpClientModule } from '@angular/common/http';
+import { baseURL } from './shared/baseurl';
+import {ProcessHTTPMsgService} from "./services/process-httpmsg.service";
 
 @NgModule({
   declarations: [
@@ -67,11 +70,15 @@ import {MatSlider} from "@angular/material/slider";
     MatCheckboxModule,
     FormsModule,
     MatProgressSpinnerModule,
-    MatSliderModule
+    MatSliderModule,
+    HttpClientModule
   ],
   providers: [DishService,
   PromotionService,
-  LeaderService],
+  LeaderService,
+    {provide: 'BaseURL', useValue: baseURL},
+    ProcessHTTPMsgService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     LoginComponent
