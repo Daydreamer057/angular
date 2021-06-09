@@ -38,6 +38,7 @@ import {MatSlider} from "@angular/material/slider";
 import { HttpClientModule } from '@angular/common/http';
 import { baseURL } from './shared/baseurl';
 import {ProcessHTTPMsgService} from "./services/process-httpmsg.service";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [

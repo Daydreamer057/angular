@@ -35,6 +35,8 @@ export class DishdetailComponent implements OnInit {
   @Input()
   dish: Dish;
 
+  dishcopy: Dish;
+  errMess: string;
   dishIds: string[];
   prev: string;
   next: string;
@@ -47,15 +49,16 @@ export class DishdetailComponent implements OnInit {
   constructor(private dishservice: DishService,
               private route: ActivatedRoute,
               private location: Location,
-              private fb: FormBuilder,
-              @Inject('baseURL') private baseURL) {
+              private fb: FormBuilder) {
     this.createForm();
   }
 
   ngOnInit() {
     this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
-    this.route.params.pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+    this.route.params
+      .pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
+      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); },
+        errmess => this.errMess = <any>errmess );
   }
 
   setPrevNext(dishId: string) {
@@ -87,6 +90,12 @@ export class DishdetailComponent implements OnInit {
     this.dish.comments.push(this.comment);
     console.log(this.comment);
     this.commentForm.reset({rating: this.rating});
+    this.dishcopy.comments.push(this.comment);
+    this.dishservice.putDish(this.dishcopy)
+      .subscribe(dish => {
+          this.dish = dish; this.dishcopy = dish;
+        },
+        errmess => { this.dish = null; this.dishcopy = null; this.errMess = <any>errmess; });
   }
 
   onValueChanged(data?: any) {
